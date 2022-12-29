@@ -27,4 +27,4 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: eventDelivaryStack
-          template: Iac/cf.yaml
+          template: Iac/sam.yaml

@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: Serverless Data Pipeline
 
 Parameters:
-  # ApiStageName:
+  # ApiStageName: test
   #   Type: String
   #   Default: dev
   #   Description: "The API Gateway Stage name (e.g. dev, prod, etc.)"

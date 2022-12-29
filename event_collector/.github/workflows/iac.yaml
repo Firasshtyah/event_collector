@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - Iac/**
-
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest

@@ -132,12 +132,12 @@ Resources:
                 - - 'arn:aws:s3:::'
                   - !Ref DeliveryBucket
                   - '*'
-          - Effect: Allow
-            Action:
-              - 'lambda:InvokeFunction'
-              - 'lambda:GetFunctionConfiguration'
-            Resource:
-              - !GetAtt StreamProcessFunction.Arn
+          # - Effect: Allow
+          #   Action:
+          #     - 'lambda:InvokeFunction'
+          #     - 'lambda:GetFunctionConfiguration'
+          #   Resource:
+          #     - !GetAtt StreamProcessFunction.Arn
 
   # APIRole:
   #   Type: AWS::IAM::Role

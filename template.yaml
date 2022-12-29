@@ -44,7 +44,7 @@ Parameters:
   #   Description: "The Athena database name"
   # AthenaTableName:
   #   Type: String
-  #   Default: records
+  #   Default: records test
   #   Description: "The Athena table name"
 Globals:
   Function:

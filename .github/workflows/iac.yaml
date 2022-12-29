@@ -30,4 +30,4 @@ jobs:
       - name: Deploy to AWS
         run: |
           sam build 
-          sam deploy
+          sam deploy --template-file template.yaml --stack-name events-streams --capabilities CAPABILITY_IAM  --region eu-west-1

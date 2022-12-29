@@ -1,0 +1,6 @@
+Resources:
+  S3deliverystream:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: voga-firehose-events-deliverystream
+      

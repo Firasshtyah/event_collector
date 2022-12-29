@@ -3,7 +3,7 @@ name: cloudformation_deploy
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - iac/**
 

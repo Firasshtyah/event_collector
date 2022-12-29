@@ -58,7 +58,7 @@ Resources:
     Properties:
       LayerName: collector-dependencies
       Description: Dependencies for sam app [sam-with-layers]
-      ContentUri: dependencies/
+      ContentUri: /dependencies/
       CompatibleRuntimes:
         - python3.7
         - python3.8

@@ -46,13 +46,29 @@ Parameters:
   #   Type: String
   #   Default: records
   #   Description: "The Athena table name"
+Globals:
+  Function:
+    Layers:
+      - !Ref ProductCoreLayer
 
 Resources:
+
+  ProductCoreLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: collector-dependencies
+      Description: Dependencies for sam app [sam-with-layers]
+      ContentUri: dependencies/
+      CompatibleRuntimes:
+        - python3.7
+        - python3.8
+        - python3.9
+      RetentionPolicy: Delete
 
   DeliveryBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: voga-firehose-events-deliverystream
+      BucketName: voga-firehose-events-deliverystreams-v2
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true

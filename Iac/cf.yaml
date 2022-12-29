@@ -1,13 +1,74 @@
 Resources:
-  S3deliverystream:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: voga-firehose-events-deliverystreams
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
+    deliverystream:
+      DependsOn:
+        - deliveryPolicy
+      Type: AWS::KinesisFirehose::DeliveryStream
+      Properties:
+        DeliveryStreamName: event-collector
+        DeliveryStreamType: DirectPut
+        ExtendedS3DestinationConfiguration:
+          BucketARN: !Join 
+            - ''
+            - - 'arn:aws:s3:::'
+              - !Ref S3deliverystream
+          BufferingHints:
+            IntervalInSeconds: 60
+            SizeInMBs: 50 
+          CompressionFormat: UNCOMPRESSED
+          Prefix: firehose/
+          RoleARN: !GetAtt deliveryRole.Arn
+
+    S3deliverystream:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: voga-firehose-events-deliverystreams
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+    deliveryRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Sid: ''
+              Effect: Allow
+              Principal:
+                Service: firehose.amazonaws.com
+              Action: 'sts:AssumeRole'
+              Condition:
+                StringEquals:
+                  'sts:ExternalId': 'XXXXXXXX(Your AWS AccountID)'
+    deliveryPolicy:
+      Type: AWS::IAM::Policy
+      Properties:
+        PolicyName: firehose_delivery_policy
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action:
+                - 's3:AbortMultipartUpload'
+                - 's3:GetBucketLocation'
+                - 's3:GetObject'
+                - 's3:ListBucket'
+                - 's3:ListBucketMultipartUploads'
+                - 's3:PutObject'
+              Resource:
+                - !Join 
+                  - ''
+                  - - 'arn:aws:s3:::'
+                    - !Ref S3deliverystream
+                    - '*'
+                - !Join 
+                  - ''
+                  - - 'arn:aws:s3:::'
+                    - !Ref S3deliverystream
+                    - '*'
+        Roles:
+          - !Ref deliveryRole
 
 # this
       

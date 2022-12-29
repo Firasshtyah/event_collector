@@ -40,7 +40,7 @@ Resources:
               Action: 'sts:AssumeRole'
               Condition:
                 StringEquals:
-                  'sts:ExternalId': 'XXXXXXXX(Your AWS AccountID)'
+                  'sts:ExternalId': '289534270002'
     deliveryPolicy:
       Type: AWS::IAM::Policy
       Properties:

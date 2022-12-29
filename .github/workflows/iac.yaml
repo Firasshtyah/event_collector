@@ -31,5 +31,5 @@ jobs:
 
       - name: Deploy to AWS
         run: |
-          sam build --template Iac/sam.yaml --guided
-          sam deploy
+          sam build 
+          sam deploy --template Iac/sam.yaml --guided

@@ -58,7 +58,7 @@ Resources:
     Properties:
       LayerName: collector-dependencies
       Description: Dependencies for sam app [sam-with-layers]
-      ContentUri: collector-dependencies/
+      ContentUri: .aws-sam/build/collector-dependencies
       CompatibleRuntimes:
         - python3.7
         - python3.8

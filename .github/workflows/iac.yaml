@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: checkout_iac
@@ -30,7 +30,6 @@ jobs:
 
       - name: Deploy to AWS
         run: |
-          ln -sf /usr/local/opt/python@3.9/bin/python3.9 /usr/local/bin/
           sam build
           pip install -r requirements.txt -t .aws-sam/build/collector-dependencies
           ls -a

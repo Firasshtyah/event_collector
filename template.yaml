@@ -58,7 +58,7 @@ Resources:
     Properties:
       LayerName: collector-dependencies
       Description: Dependencies for sam app [sam-with-layers]
-      ContentUri: /dependencies/
+      ContentUri: dependencies/
       CompatibleRuntimes:
         - python3.7
         - python3.8
@@ -107,7 +107,7 @@ Resources:
         #     - Type: Lambda
         #       Parameters:
         #         - ParameterName: LambdaArn
-        #           ParameterValue: !GetAtt StreamProcessFunction.Arn
+        #           ParameterValue: !GetAtt StreamProcessFunction.Arn ree
 
   DeliveryStreamRole:
     Type: AWS::IAM::Role

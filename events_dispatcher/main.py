@@ -1,42 +1,24 @@
+import boto3
 import json
 
-import requests
 
 
-def lambda_handler(event, context):
-    """Sample pure Lambda functio
+s3 = boto3.resource('s3')
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
+def lambda_handler (event, context):
+    apps = ['catalog','insider']
+    bucket_name = event["Records"][0]['s3']['bucket']['name']
+    src_key = event["Records"][0]['s3']['object']['key']
+    object_src = {
+    'Bucket': bucket_name,
+    'Key': src_key
+        }
+    print(bucket_name)
+    print(src_key)
+    dest_file_name = src_key.split('/')[-1]
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    try:
-        ip = requests.get("http://checkip.amazonaws.com/")
-    except requests.RequestException as e:
-        # Send some context about this error to Lambda Logs
-        print(e)
-
-        raise e
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            "location": ip.text.replace("\n", "")
-        }),
-    }
+    
+    for app in apps :
+        dest_key = f'apps/{app}/{dest_file_name}'
+        print(dest_key)
+        s3.meta.client.copy(object_src,bucket_name, dest_key)

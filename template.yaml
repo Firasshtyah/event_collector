@@ -79,7 +79,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: events_dispatcher
-      Handler: handler.lambda_handler
+      Handler: app.lambda_handler
       Runtime: python3.8
       Timeout: !Ref LambdaTimeout
       MemorySize: !Ref LambdaMemorySize

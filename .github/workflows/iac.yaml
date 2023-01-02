@@ -27,7 +27,9 @@ jobs:
       #     name: eventDelivaryStack
       #     template: Iac/sam.yaml
 
+
       - name: Deploy to AWS
         run: |
-          sam build 
+          sam build
+          pip install -r events_dispatcher/requirements.txt -t .aws-sam/build/collector-dependencies
           sam deploy --template-file template.yaml --stack-name events-streams-v4 --capabilities CAPABILITY_NAMED_IAM --resolve-s3 --region eu-west-1

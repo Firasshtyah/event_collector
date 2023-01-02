@@ -75,7 +75,7 @@ Resources:
         RestrictPublicBuckets: true
       
 
-  events_dispatcher:
+  events-dispatcher:
     Type: AWS::Serverless::Function
     Properties:
       Handler: handler.lambda_handler

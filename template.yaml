@@ -80,7 +80,7 @@ Resources:
     Properties:
       CodeUri: events_dispatcher
       Handler: handler.lambda_handler
-      Runtime: python3.6
+      Runtime: python3.9
       Timeout: !Ref LambdaTimeout
       MemorySize: !Ref LambdaMemorySize
 

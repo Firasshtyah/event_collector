@@ -88,7 +88,7 @@ Resources:
           Type: S3
           Properties:
             Bucket: !Ref DeliveryBucket
-            Events: S3:ObjectCreated:*
+            Events: s3:ObjectCreated:*
 
   DeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream

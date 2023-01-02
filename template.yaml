@@ -60,10 +60,9 @@ Resources:
       Description: Dependencies for sam app [sam-with-layers]
       ContentUri: .aws-sam/build/collector-dependencies
       CompatibleRuntimes:
-        - python3.7
         - python3.8
         - python3.9
-      RetentionPolicy: Delete
+
 
   DeliveryBucket:
     Type: AWS::S3::Bucket

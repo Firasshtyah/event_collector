@@ -89,6 +89,8 @@ Resources:
           Properties:
             Bucket: !Ref DeliveryBucket
             Events: s3:ObjectCreated:*
+      Policies:
+        - AmazonS3FullAccess
 
   DeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream

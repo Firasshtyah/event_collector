@@ -40,7 +40,7 @@ Parameters:
     AllowedValues: [128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536]
   # AthenaDatabaseName:
   #   Type: String
-  #   Default: serverless_data_pipeline ff
+  #   Default: serverless_data_pipeline ffd
   #   Description: "The Athena database name"
   # AthenaTableName:
   #   Type: String

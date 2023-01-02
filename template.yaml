@@ -75,13 +75,13 @@ Resources:
         RestrictPublicBuckets: true
       
 
-  # StreamProcessFunction:
-  #   Type: AWS::Serverless::Function
-  #   Properties:
-  #     Handler: handler.lambda_handler
-  #     Runtime: python2.7
-  #     Timeout: !Ref LambdaTimeout
-  #     MemorySize: !Ref LambdaMemorySize
+  events_dispatcher:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.lambda_handler
+      Runtime: python3.9
+      Timeout: !Ref LambdaTimeout
+      MemorySize: !Ref LambdaMemorySize
 
   DeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream

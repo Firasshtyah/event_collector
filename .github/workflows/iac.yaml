@@ -24,7 +24,7 @@ jobs:
       # - name: Deploy to AWS CloudFormation test2
       #   uses: aws-actions/aws-cloudformation-github-deploy@v1
       #   with:
-      #     name: eventDelivaryStack
+      #     name: eventDelivaryStack ff
       #     template: Iac/sam.yaml
 
 

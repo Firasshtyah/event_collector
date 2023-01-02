@@ -75,9 +75,10 @@ Resources:
         RestrictPublicBuckets: true
       
 
-  events-dispatcher:
+  eventsDispatcher:
     Type: AWS::Serverless::Function
     Properties:
+      codeuri: events_dispatcher
       Handler: handler.lambda_handler
       Runtime: python3.9
       Timeout: !Ref LambdaTimeout

@@ -106,8 +106,13 @@ Resources:
         S3Event:
           Type: S3
           Properties:
-            Bucket: !Join [ !Ref DeliveryBucket.name, "/apps/catalog/"] 
+            Bucket: !Ref DeliveryBucket
             Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: apps/catalog/
       Policies:
         - AmazonS3FullAccess
 

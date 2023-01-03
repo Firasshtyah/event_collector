@@ -61,8 +61,6 @@ Resources:
       AttributeDefinitions:
         - AttributeName: product_id
           AttributeType: S
-        - AttributeName: clicks
-          AttributeType: S
       KeySchema:
         - AttributeName: product_id
           KeyType: HASH

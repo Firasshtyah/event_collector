@@ -22,6 +22,7 @@ jobs:
           aws-region: eu-west-1
       - name: Stack bucket
         run: |
+          ls -a
           chmod +x ./scripts/deployment_S3.sh
           ./scripts/deployment_S3.sh
       - name: SAM Build

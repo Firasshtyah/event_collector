@@ -133,7 +133,7 @@ Resources:
         BufferingHints:
           IntervalInSeconds: !Ref FirehoseBufferingInterval
           SizeInMBs: !Ref FirehoseBufferingSize
-        CompressionFormat: !Ref FirehoseCompressionFormat
+        # CompressionFormat: !Ref FirehoseCompressionFormat
         #EncryptionConfiguration: 
         #  KMSEncryptionConfig:
         #    AWSKMSKeyARN: ARN

@@ -6,4 +6,14 @@ import json
 s3 = boto3.resource('s3')
 
 def lambda_handler (event, context):
-    print(event['queryStringParameters']['id'])
+
+    product_id = event['queryStringParameters']['id']
+    
+    dydb = boto3.resource('dynamodb')
+    table = dydb.Table('catalog_attr')
+    response = table.get_item(Key={"product_id" :product_id},)
+
+    return {
+
+        'clickcount' : response
+    }

@@ -5,11 +5,6 @@ import json
 
 s3 = boto3.resource('s3')
 
-class JSONEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, Decimal):
-            return float(obj)
-        return json.JSONEncoder.default(self, obj)
 
 def lambda_handler (event, context):
 
@@ -24,10 +19,10 @@ def lambda_handler (event, context):
     response_body = {
 
         "product_id" : product_id,
-        "clickcount" : clicks
+        "clickcount" : str(clicks)
     }
 
     return {
         "statusCode": 200,
-        "body": json.dumps(response_body, cls= JSONEncoder )
+        "body": json.dumps(response_body)
     }

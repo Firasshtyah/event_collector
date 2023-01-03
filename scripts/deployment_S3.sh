@@ -2,5 +2,5 @@
 
 if aws s3 ls "s3://vogaeventrecorderstack" 2>&1 | grep -q 'NoSuchBucket'
 then
-aws s3api create-bucket --bucket vogaeventrecorderstack --region eu-west-1
+aws s3api create-bucket --bucket voga-event-recorder-stack --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1
 fi

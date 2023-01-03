@@ -135,6 +135,7 @@ Resources:
                     Value: apps/catalog/
       Policies:
         - AmazonS3FullAccess
+        - AmazonDynamoDBFullAccess
 
   DeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream

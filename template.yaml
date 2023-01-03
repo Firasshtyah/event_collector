@@ -73,6 +73,8 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
+    Export:
+      Name: bucket_name
       
 
   EventsDispatcher:
@@ -104,7 +106,7 @@ Resources:
         S3Event:
           Type: S3
           Properties:
-            Bucket: voga-firehose-events-deliverystreams-v2/apps/catalog/
+            Bucket: !Join [ !Ref bucket_name, "/apps/catalog/"] 
             Events: s3:ObjectCreated:*
       Policies:
         - AmazonS3FullAccess

@@ -15,7 +15,13 @@ def lambda_handler (event, context):
 
     clicks = response['Item']['clicks']
 
+    response_body = {
+
+        "product_id" : product_id,
+        "clickcount" : clicks
+    }
+
     return {
         "statusCode": 200,
-        "body": json.dumps(f"clickcount : {clicks}")
+        "body": json.dumps(response_body)
     }

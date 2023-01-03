@@ -155,6 +155,7 @@ Resources:
       - DeliveryStreamPolicy
     Properties:
       DeliveryStreamType: DirectPut
+      DeliveryStreamName: Events_recorder_stream
       ExtendedS3DestinationConfiguration:
         Prefix: !Ref FirehoseS3Prefix
         BucketARN: !GetAtt DeliveryBucket.Arn

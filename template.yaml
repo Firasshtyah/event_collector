@@ -106,7 +106,7 @@ Resources:
         S3Event:
           Type: S3
           Properties:
-            Bucket: !Join [ !Ref bucket_name, "/apps/catalog/"] 
+            Bucket: !Join [ !Ref DeliveryBucket.name, "/apps/catalog/"] 
             Events: s3:ObjectCreated:*
       Policies:
         - AmazonS3FullAccess

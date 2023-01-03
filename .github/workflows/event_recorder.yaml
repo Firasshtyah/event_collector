@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  deploy:
+  Build_and_deploy:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: checkout_iac
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Configure AWS credentials
@@ -20,17 +20,16 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
+      - name: SAM Build
+        run: sam build
+      - name: Download dependencies
+        run:  pip install -r requirements.txt -t .aws-sam/build/collector-dependencies/python/
+      - name: SAM Deploy - AWS
+        run: sam deploy --template-file template.yaml --stack-name events-streams-v5 --capabilities CAPABILITY_IAM --s3-bucket vogasamclick --region eu-west-1
 
-      # - name: Deploy to AWS CloudFormation test2
-      #   uses: aws-actions/aws-cloudformation-github-deploy@v1
-      #   with:
-      #     name: eventDelivaryStack ff
-      #     template: Iac/sam.yaml
-
-
-      - name: Deploy to AWS
-        run: |
-          sam build
-          pip install -r requirements.txt -t .aws-sam/build/collector-dependencies/python/
-          ls -a
-          sam deploy --template-file template.yaml --stack-name events-streams-v5 --capabilities CAPABILITY_IAM --s3-bucket vogasamclick --region eu-west-1
+      # - name: Deploy to AWS
+      #   run: |
+      #     sam build
+      #     pip install -r requirements.txt -t .aws-sam/build/collector-dependencies/python/
+      #     ls -a
+      #     sam deploy --template-file template.yaml --stack-name events-streams-v5 --capabilities CAPABILITY_IAM --s3-bucket vogasamclick --region eu-west-1

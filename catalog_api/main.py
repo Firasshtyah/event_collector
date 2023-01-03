@@ -14,6 +14,6 @@ def lambda_handler (event, context):
     response = table.get_item(Key={"product_id" :product_id},)
 
     return {
-
-        'clickcount' : response
+        "statusCode": 200,
+        "body": json.dumps(f"{'clickcount' : {response}}")
     }

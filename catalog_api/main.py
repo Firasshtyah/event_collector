@@ -13,7 +13,9 @@ def lambda_handler (event, context):
     table = dydb.Table('catalog_attr')
     response = table.get_item(Key={"product_id" :product_id},)
 
+    clicks = response['Item']['clicks']
+
     return {
         "statusCode": 200,
-        "body": json.dumps(f"clickcount : {response}")
+        "body": json.dumps(f"clickcount : {clicks}")
     }

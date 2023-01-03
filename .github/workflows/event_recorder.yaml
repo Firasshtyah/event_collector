@@ -30,11 +30,4 @@ jobs:
       - name: Download dependencies
         run:  pip install -r requirements.txt -t .aws-sam/build/collector-dependencies/python/
       - name: SAM Deploy - AWS
-        run: sam deploy --template-file template.yaml --stack-name events-recorder --capabilities CAPABILITY_IAM --s3-bucket vogasamclick --region eu-west-1
-
-      # - name: Deploy to AWS
-      #   run: |
-      #     sam build
-      #     pip install -r requirements.txt -t .aws-sam/build/collector-dependencies/python/
-      #     ls -a
-      #     sam deploy --template-file template.yaml --stack-name events-streams-v5 --capabilities CAPABILITY_IAM --s3-bucket vogasamclick --region eu-west-1
+        run: sam deploy --template-file template.yaml --stack-name events-recorder --capabilities CAPABILITY_IAM --s3-bucket voga-event-recorder-stack --region eu-west-1

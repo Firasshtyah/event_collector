@@ -52,6 +52,23 @@ Globals:
       - !Ref ProductCoreLayer
 
 Resources:
+  
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: catalog_attr
+      AttributeDefinitions:
+        - AttributeName: product_id
+          AttributeType: S
+        - AttributeName: clicks
+          AttributeType: S
+      KeySchema:
+        - AttributeName: product_id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
 
   ProductCoreLayer:
     Type: AWS::Serverless::LayerVersion

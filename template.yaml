@@ -52,6 +52,26 @@ Globals:
       - !Ref ProductCoreLayer
 
 Resources:
+
+  BasicAWSApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Basic AWS Api Gateway
+      StageName: Staging
+
+  FunCatalogAPI:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: catalog_api/
+      Handler: main.lambda_handler
+      Runtime: python3.8
+      Events:
+        CatalogAPI:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BasicAWSApiGateway
+            Path: /product
+            Method: GET
   
   DynamoDBTable:
     Type: AWS::DynamoDB::Table

@@ -91,6 +91,11 @@ Resources:
           Properties:
             Bucket: !Ref DeliveryBucket
             Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: firhose/
       Policies:
         - AmazonS3FullAccess
   

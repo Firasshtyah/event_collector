@@ -95,7 +95,7 @@ Resources:
               S3Key:
                 Rules:
                   - Name: prefix
-                    Value: firhose/
+                    Value: firehose/
       Policies:
         - AmazonS3FullAccess
   

@@ -65,12 +65,15 @@ Resources:
       CodeUri: catalog_api/
       Handler: main.lambda_handler
       Runtime: python3.8
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonDynamoDBFullAccess
       Events:
         CatalogAPI:
           Type: Api
           Properties:
             RestApiId: !Ref BasicAWSApiGateway
-            Path: /product
+            Path: /product/{itemCode}
             Method: GET
   
   DynamoDBTable:

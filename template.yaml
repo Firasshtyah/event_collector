@@ -94,7 +94,7 @@ Resources:
   DeliveryBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: voga-firehose-events-deliverystreams-v2
+      BucketName: voga-firehose-events-recorder
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true

@@ -91,6 +91,23 @@ Resources:
             Events: s3:ObjectCreated:*
       Policies:
         - AmazonS3FullAccess
+  
+  CatalogTransform:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: catalog_transform/
+      Handler: main.lambda_handler
+      Runtime: python3.8
+      Timeout: !Ref LambdaTimeout
+      MemorySize: !Ref LambdaMemorySize
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: voga-firehose-events-deliverystreams-v2/apps/catalog/
+            Events: s3:ObjectCreated:*
+      Policies:
+        - AmazonS3FullAccess
 
   DeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream

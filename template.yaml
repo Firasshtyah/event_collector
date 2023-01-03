@@ -73,7 +73,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref BasicAWSApiGateway
-            Path: /product/{itemCode}
+            Path: /product
             Method: GET
   
   DynamoDBTable:

@@ -1,4 +1,4 @@
-name: cloudformation_deploy
+name: Event_Recoder
 
 on:
   push:

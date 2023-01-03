@@ -61,7 +61,7 @@ Resources:
       Auth:
         ApiKeyRequired: true
         UsagePlan:
-          CreateUsagePlan: API
+          CreateUsagePlan: PER_API
           UsagePlanName: GatewayAuthorization
 
   FunCatalogAPI:

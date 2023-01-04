@@ -30,7 +30,6 @@ def lambda_handler(event, context):
             
             prodcut_id = response['Item']['product_id']
             
-            print(prodcut_id)
             
             response_update = table.update_item(
                     Key={
@@ -42,7 +41,6 @@ def lambda_handler(event, context):
                     },
                     ReturnValues="UPDATED_NEW"
                     )
-            print(response_update)
             
             
         except Exception as e:
@@ -52,7 +50,6 @@ def lambda_handler(event, context):
                         'clicks': 1
                          }
                 )
-            print(response)
 
     #         # insider_event = {
                 

@@ -21,7 +21,7 @@ Parameters:
     Description: "Maximum batch size in MB"
   LambdaTimeout:
     Type: Number
-    Default: 30
+    Default: 300
     MinValue: 5
     MaxValue: 300
     Description: "Maximum Lambda execution time in seconds"

@@ -135,9 +135,8 @@ Resources:
       Timeout: 15
       MemorySize: !Ref LambdaMemorySize
       Policies:
-        -AmazonKinesisFirehoseFullAccess
-
-  
+        - AmazonKinesisFirehoseFullAccess
+        
   CatalogTransform:
     Type: AWS::Serverless::Function
     Properties:

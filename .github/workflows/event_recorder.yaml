@@ -27,6 +27,8 @@ jobs:
           ./scripts/deployment_S3.sh
       - name: SAM Build
         run: sam build
+      - name: SAM validate
+        run: sam validate
       - name: Download dependencies
         run:  pip install -r requirements.txt -t .aws-sam/build/collector-dependencies/python/
       - name: SAM Deploy - AWS

@@ -132,11 +132,11 @@ Resources:
       CodeUri: load_test/
       Handler: main.lambda_handler
       Runtime: python3.8
-      Timeout: 15
+      Timeout: 900
       MemorySize: !Ref LambdaMemorySize
       Policies:
         - AmazonKinesisFirehoseFullAccess
-        
+
   CatalogTransform:
     Type: AWS::Serverless::Function
     Properties:

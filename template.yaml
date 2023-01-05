@@ -67,7 +67,7 @@ Resources:
             Path: /product
             Method: GET
   
-  DynamoDBTable:
+  CatalogDynamoDBTable:
     Type: AWS::DynamoDB::Table
     DeletionPolicy: Retain
     Properties:

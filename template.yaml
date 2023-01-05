@@ -138,6 +138,17 @@ Resources:
       MemorySize: !Ref LambdaMemorySize
       Policies:
         - AmazonKinesisFirehoseFullAccess
+  
+  LambdaInvokeTest:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda_invoke/
+      Handler: main.lambda_handler
+      Runtime: python3.8
+      Timeout: 900
+      MemorySize: !Ref LambdaMemorySize
+      Policies:
+        - AWSLambda_FullAccess
 
   CatalogTransform:
     Type: AWS::Serverless::Function

@@ -8,7 +8,7 @@ def lambda_handler (event, context):
 
 
     
-    for i in range(50000):
+    for i in range(1000):
         response = firehose.put_record(
             DeliveryStreamName="Events_recorder_stream",
                 Record={

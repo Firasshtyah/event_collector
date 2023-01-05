@@ -1,6 +1,15 @@
 import json
 import boto3
+from botocore.exceptions import ClientError
 
+unique_list = []
+
+def product_list(events_count):
+ 
+    for x in events_count:
+        # check if exists in unique_list or not
+        if x not in unique_list:
+            unique_list.append(x)
 
 def lambda_handler(event, context):
     
@@ -19,14 +28,19 @@ def lambda_handler(event, context):
     events_json = events_object_content.replace('}{','},{')
     events_json = f"[{events_json}]"
     events_list = json.loads(events_json)
+    events_count=[]
 
         
     for event in events_list :
+        events_count.append(event['prodcut_id'])
         
- 
+    product_list(events_count)
+    for product in unique_list:
+        
+        print(f"{product}:{events_count.count(product)}")
 
         try:
-            response = table.get_item(Key={"product_id" :event['prodcut_id']},)
+            response = table.get_item(Key={"product_id" :product},)
             
             prodcut_id = response['Item']['product_id']
             
@@ -37,36 +51,40 @@ def lambda_handler(event, context):
                     },
                     UpdateExpression='SET clicks = :clicks',
                     ExpressionAttributeValues={
-                        ':clicks': response['Item']['clicks']+1
+                        ':clicks': response['Item']['clicks']+events_count.count(product)
                     },
                     ReturnValues="UPDATED_NEW"
                     )
             
             
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+            print("throttle")
+            print(error_code)
+            if error_code == 'ProvisionedThroughputExceededException':
+                print(e)
+    
         except Exception as e:
+            print("not created")
+            print(e)
             response = table.put_item(
-                            Item={
-                        'product_id': event['prodcut_id'],
-                        'clicks': 1
-                         }
-                )
-
-    #         # insider_event = {
-                
-    #         #     'creation_date' : json.dumps(event_dict['creation_date']),
-    #         #     'sid' : event_dict['session_id'] ,
-    #         #     'source' : event_dict['appCodeName'] ,
-    #         #     'url' : event_dict['URL'],
-    #         #     'product_id' : event_dict['prodcut_id'],
-    #         #     'userAgent': event_dict['userAgent']
-    #         # }
-    #         # insider_event_list.append(insider_event)
-    #     # bucket_name = "vogatransform"
-    #     # file_name = f"insider_batch_{context.aws_request_id}"
-    #     # s3_path = "insider/" + file_name
-    #     # s3.put_object(Bucket=bucket_name,Key=s3_path, Body=json.dumps(insider_event_list))
-    #     # print(insider_event_list[0])
+                    Item={
+                'product_id': product,
+                'clicks' : 0}
+                    )
+            response = table.get_item(Key={"product_id" :product},)
             
-
-    # except Exception as e: 
-    #     print(e)
+            prodcut_id = response['Item']['product_id']
+            
+            
+            response_update = table.update_item(
+                    Key={
+                        'product_id': prodcut_id
+                    },
+                    UpdateExpression='SET clicks = :clicks',
+                    ExpressionAttributeValues={
+                        ':clicks': response['Item']['clicks']+events_count.count(product)
+                    },
+                    ReturnValues="UPDATED_NEW"
+                    )
+    print(src_key)

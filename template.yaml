@@ -79,8 +79,8 @@ Resources:
         - AttributeName: product_id
           KeyType: HASH
       ProvisionedThroughput:
-        ReadCapacityUnits: 2
-        WriteCapacityUnits: 2
+        ReadCapacityUnits: 3
+        WriteCapacityUnits: 3
 
   ProductCoreLayer:
     Type: AWS::Serverless::LayerVersion

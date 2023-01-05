@@ -5,7 +5,7 @@ Description: Serverless Data Pipeline
 
 
 Parameters:
-  FirehoseS3Prefix:sad
+  FirehoseS3Prefix:
     Type: String
     Default: firehose/
     Description: "The S3 Key prefix for Kinesis Firehose."
@@ -160,7 +160,7 @@ Resources:
                     Value: apps/catalog/
       Policies:
         - AmazonS3FullAccess
-        - AmazonDynamoDBFullAccess
+        -AmazonDynamoDBFullAccess
 
   DeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream

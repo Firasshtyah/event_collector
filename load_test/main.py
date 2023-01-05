@@ -20,7 +20,7 @@ def lambda_handler (event, context):
                     "appCodeName" : "test",
                     "appName" : "test" ,
                     "userAgent" : "test",
-                    "prodcut_id" : f"product_{str(random.randrange(1, 6))}"
+                    "prodcut_id" : f"product_{str(random.randrange(1,1000))}"
                     }
                         )
                     

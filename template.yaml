@@ -2,8 +2,10 @@ AWSTemplateFormatVersion : '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Serverless Data Pipeline
 
+
+
 Parameters:
-  FirehoseS3Prefix:
+  FirehoseS3Prefix:sad
     Type: String
     Default: firehose/
     Description: "The S3 Key prefix for Kinesis Firehose."
